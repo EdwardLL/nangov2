@@ -1,0 +1,18 @@
+insert into Region values (1,'America del Sur');
+insert into Region values (2,'America Central');
+insert into Region values (3,'America del Norte');
+insert into Pais values (1,'Peru',1);
+insert into Pais values (2,'Chile',1);
+insert into Pais values (3,'Colombia',1);
+insert into Pais values (4,'Mexico',2);
+insert into zona_horaria values (1,'UTC-5');
+insert into zona_horaria values (2,'UTC-6');
+insert into zona_horaria values (3,'UTC-7');
+insert into ciudad values (1,'Lima',1,1);
+insert into ciudad values (2,'Guadalajara',4,1);
+insert into ciudad values (3,'Valparaiso',2,1);
+insert into servidor values (1,'Server Chile Valparaiso',3);
+insert into servidor values (1,'Server Mexico Guadalajara',2);
+insert into servidor values (1,'Server Peru Lima',1);
+insert into videojuego values (1,'Dota 2',25);
+insert into videojuego values (2,'League of legends',25);

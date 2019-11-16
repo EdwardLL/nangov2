@@ -28,7 +28,7 @@ import pe.edu.upc.spring.service.IVideojuegoServidor;
 
 @Controller
 @RequestMapping("/usuario")
-@SessionAttributes("/usuarioprueba")
+@SessionAttributes({"usuarioprueba"})
 public class UsuarioController {
 
 
