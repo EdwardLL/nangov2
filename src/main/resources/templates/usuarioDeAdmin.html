@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Registro</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/categoria.js}"></script>
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/usuario/registrarAdmi}" method="post"
+			th:object="${usuario}">
+			<div class="form-group">
+					<label for="IDUsuario">ID:</label> <input type="text" readonly="readonly"
+					class="form-control" th:field="*{IDUsuario}"></input>
+				<div class="form-group">
+				
+				<label for="NUsuario">Nombre:</label> 
+				<input type="text"	th:field="*{NUsuario}"
+				class="form-control" id="NUsuario" readonly="readonly"></input>
+				
+				<label for="DBirth">Fecha de nacimiento:</label> 			
+                <input type="date" readonly="readonly" th:field="*{DBirth}"
+				class="form-control" id="DBirth"></input>
+				
+				<label for="EmailUsuario">Correo electronico:</label> 			
+                <input type="text" readonly="readonly" th:field="*{EmailUsuario}"
+				class="form-control" id="EmailUsuario"></input>
+				
+				<label for="InsigUsuario">Insignia:</label> 		    	
+				<select  class="form-control" th:field="*{InsigUsuario}" >
+				  <option th:value="Bronce"  >Bronce</option>
+				  <option th:value="Platino"  >Platino</option>
+				  <option th:value="Dorado"  >Dorado</option>
+				  <option th:value="Estrella"  >Estrella</option>			  
+				</select>
+				
+				
+				<label for="FUsuario">Estado:</label> 		    	
+				<select  class="form-control" th:field="*{FUsuario}" >
+				  <option th:value="Habilitado"  >Habilitado</option>	
+				   <option th:value="Inhabilitado"  >Inhabilitado</option>	  
+				</select>
+				
+				
+				<label for="ClvUsuario" >Clave:</label> 			
+                <input type="password" th:field="*{ClvUsuario}"
+				class="form-control" id="ClvUsuario"></input>
+				
+				<label for="SaldUsuario">Saldo:</label> 			
+                <input type="text" readonly="readonly" th:field="*{SaldUsuario}"
+				class="form-control" id="SaldUsuario"></input>
+			
+				 <label for="ciudad">Ciudad:</label> 		    	
+				<select readonly="readonly"  class="form-control" th:field="*{ciudad}" >
+				  <option th:each="ciudad: ${ciudades}" th:text="${ciudad.nombreCiudad}"
+				          th:value="${ciudad.idCiudad}"  ></option>	  
+				</select>
+				
+				</div>
+			
+			</div>
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/usuario/listar" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

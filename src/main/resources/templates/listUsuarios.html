@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Usuarios</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+<h2 class="text-center my-15">Mantenimiento de Usuarios</h2>
+	<div class="container">
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">				
+					<a style="border-bottom-color: green" th:href="@{/usuario/irBuscar}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-search"></span> 
+					</a>
+					
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">NOMBRE</th>
+								<th class="text-center">ESTADO</th>
+								<th class="text-center">CORREO</th>
+								<th class="text-center">F.NACIMIENTO</th>
+								<th class="text-center">SALDO</th>
+								<th class="text-center">INSIGNIA</th>
+								<th class="text-center">CLAVE</th>
+                                <th class="text-center">CIUDAD</th>
+                                <th class="text-center">ACCIÓN</th>
+                                <th class="text-center">ACCIÓN</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaUsuario}">
+								<td th:text="${p.NUsuario}"></td>
+								<td th:text="${p.FUsuario}"></td>
+								<td th:text="${p.EmailUsuario}"></td>
+								<td th:text="${p.DBirth}"></td>
+								<td th:text="${p.SaldUsuario}+USD"></td>
+								<td th:text="${p.InsigUsuario}"></td>
+								<td th:text="${p.ClvUsuario}"></td>
+								<td th:text="${p.ciudad.nombreCiudad}"></td>
+								<td><a th:href="@{/usuario/eliminar?id=}+${p.IDUsuario}">Eliminar</a></td>
+								<td><a th:href="@{'/usuario/modificar/'} + ${p.IDUsuario}">Modificar</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

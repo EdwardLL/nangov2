@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Buscar Torneo</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+	
+<h2 class="text-center my-15">Torneos</h2>
+	<div class="container">
+		<form id="myform" th:action="@{/torneo/buscarTorneo}" method="post" th:object="${torneo}" >
+			<div class="form-group">
+			
+			 <label for="videojuego" >Videojuego:</label> 		    	
+				<select  class="form-control" th:field="*{videojuego}" >
+				  <option th:each="v: ${videojuegos}" th:text="${v.nombreVideojuego}"
+				          th:value="${v.idVideojuego}"  ></option>	  
+				</select>
+			 <label for="modoTorneo">Modo:</label> 		    	
+				<select  class="form-control" th:field="*{modoTorneo}" >
+				  <option th:value="1vs1"  >1 vs 1</option>	
+				  <option th:value="2vs2"  >2 vs 2</option>	
+				  <option th:value="3vs3"  >3 vs 3</option>
+				  <option th:value="4vs4"  >4 vs 4</option>	
+				  <option th:value="5vs5"  >5 vs 5</option>	  
+				</select>
+								
+			<label for="servidor">Servidor:</label> 		    	
+				<select  class="form-control" th:field="*{servidor}" >
+				  <option th:each="s: ${servidores}" th:text="${s.nombreServidor}"
+				          th:value="${s.idServidor}"  ></option>	  
+				</select>
+				
+				
+				
+			<label for="estadTranscuTorneo">Estado de Transcurso:</label> 		    	
+				<select  class="form-control" th:field="*{estadTranscuTorneo}">
+				  <option th:value="Espera"  >Espera</option>	
+				  <option th:value="Encurso"  >En curso</option>	
+				  <option th:value="Finalizado"  >Finalizado</option>	  
+				</select>
+				
+			 
+			</div>
+			<button type="submit" class="btn btn-primary">Filtrar</button>
+			<a href="/torneo/irBuscarTorneo" class="btn btn-danger">Reestablecer</a>			
+		</form>
+		
+		<table class="table table-bordered table-hover table-striped"
+			id="tab_logic">
+			<thead>
+				<tr>
+								<th class="text-center"  >VIDEOJUEGO</th>
+								<th class="text-center">TORNEO</th>
+								<th class="text-center">MODO</th>
+								<th class="text-center">F.INICIO</th>
+								<th class="text-center">COSTO</th>
+								<th class="text-center">VACANTES</th>
+								<th class="text-center">SERVIDOR</th>
+								<th class="text-center">ESTADO</th>
+								<th class="text-center">Z.HORARIA</th>
+								<th class="text-center">OPERACIÓN</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="t: ${listaTorneo}">
+							<!-- th:text muestra una linea de texto -->
+								<td th:text="${t.videojuego.nombreVideojuego}"></td>
+								<td th:text="${t.nombreTorneo}"></td>
+								<td th:text="${t.modoTorneo}"></td>
+								<td th:text="${#dates.format(t.fechaInicio,'dd/MM/yyyy')}"></td>
+								<td th:text="${t.costoTorneo}"></td>
+								<td th:text="${t.vacantes}"></td>
+								<td th:text="${t.servidor.nombreServidor}"></td>
+								<td th:text="${t.estadTranscuTorneo}"></td>
+								<td th:text="${t.servidor.ciudad.zonahoraria.nombreZonaHoraria}"></td>
+								<td><a th:href="@{'/torneo/verTorneo/'} + ${t.idTorneo}">Ver</a></td>
+							</tr>
+
+			</tbody>
+		</table>
+
+
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+		
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Registro</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/categoria.js}"></script>
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/torneo/registrar}" method="post"
+			th:object="${torneo}">
+			<div class="form-group">
+					<label for="idTorneo">ID:</label> 
+					<input readonly="readonly" type="text" class="form-control" th:field="*{idTorneo}"></input>
+				<div class="form-group">
+				
+				<label for="nombreTorneo">Nombre:</label> 
+				<input type="text"	th:field="*{nombreTorneo}"
+				class="form-control" id="nombreTorneo"></input>
+				
+				<label for="fechaInicio">Fecha de inicio:</label> 			
+                <input type="date" th:field="*{fechaInicio}"
+				class="form-control" id="fechaInicio"></input>
+				
+				<label for=" HoraInicio">Hora de Inicio:</label> 			
+                <input type="time" th:field="*{HoraInicio}"
+				class="form-control" id=" HoraInicio"></input>
+				
+				<label for="FechaFin">Fecha de Fin:</label> 			
+                <input type="date" th:field="*{FechaFin}"
+				class="form-control" id="FechaFin"></input>
+						
+				<label for=" HoraFin">Hora Fin:</label> 			
+                <input type="time" th:field="*{HoraFin}"
+				class="form-control" id=" HoraFin"></input>	
+				
+				<label for="costoTorneo">Costo:</label> 			
+                <input type="text" th:field="*{costoTorneo}"
+				class="form-control" id="costoTorneo"></input>
+				
+				<label for="premioTorneo">Premio:</label> 			
+                <input type="text" th:field="*{premioTorneo}"
+				class="form-control" id="premioTorneo"></input>
+				
+				<label for="platafTorneo">Plataforma:</label> 		    	
+				<select  class="form-control" th:field="*{platafTorneo}" >
+				  <option th:value="PC"  >PC</option>
+				  <option th:value="PlayStation"  >PlayStation</option>		  
+				</select>
+				
+				<label for="vacantes">Vacantes:</label> 			
+                <input type="text" th:field="*{vacantes}"
+				class="form-control" id="vacantes"></input>
+											
+				<label for="estadCreaTorneo">Estado de Creacion:</label> 		    	
+				<select  class="form-control" th:field="*{estadCreaTorneo}" >
+				  <option th:value="Pendiente"  >Pendiente</option>	
+				  <option th:value="Rechazado"  >Rechazado</option>	
+				  <option th:value="Aprobado"  >Aprobado</option>	  
+				</select>			
+			
+				 <label for="videojuego">Videojuego:</label> 		    	
+				<select  class="form-control" th:field="*{videojuego}" >
+				  <option th:each="v: ${videojuegos}" th:text="${v.nombreVideojuego}"
+				          th:value="${v.idVideojuego}"  ></option>	  
+				</select>
+				
+				<label for="estadTranscuTorneo">Estado de Transcurso:</label> 		    	
+				<select  class="form-control" th:field="*{estadTranscuTorneo}">
+				  <option th:value="Espera"  >Espera</option>	
+				  <option th:value="Encurso"  >En curso</option>	
+				  <option th:value="Finalizado"  >Finalizado</option>	  
+				</select>	
+				
+				<label for="modoTorneo">Modo:</label> 		    	
+				<select  class="form-control" th:field="*{modoTorneo}" >
+				  <option th:value="1vs1"  >1 vs 1</option>	
+				  <option th:value="2vs2"  >2 vs 2</option>	
+				  <option th:value="3vs3"  >3 vs 3</option>
+				  <option th:value="4vs4"  >4 vs 4</option>	
+				  <option th:value="5vs5"  >5 vs 5</option>	  
+				</select>
+				
+				<label for="servidor">Servidor:</label> 		    	
+				<select  class="form-control" th:field="*{servidor}" >
+				  <option th:each="s: ${servidores}" th:text="${s.nombreServidor}"
+				          th:value="${s.idServidor}"  ></option>	  
+				</select>
+				
+				
+				</div>
+			
+			</div>
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/usuario/listar" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
