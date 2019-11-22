@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Torneos</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+ 
+	<div th:replace="fragments/header :: header" ></div>
+
+	<h2 class="text-center my-15" >Mantenimiento de Denuncias</h2>
+	
+	<div class="container">
+	<hr>
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					
+					
+					<table class="table table-bordered table-hover table-striped "
+						id="tab_logic">
+						<thead>
+							<tr class="bg-primary">
+								<th class="text-center">USUARIO</th>
+								<th class="text-center">MOTIVO</th>
+								<th class="text-center">OPERACION</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="t: ${listaDenuncias}" align="center" >
+							<!-- th:text muestra una linea de texto -->
+								<td th:text="${t.usuario.NUsuario}"></td>
+								<td th:text="${t.mensajeDenuncia}"></td>
+																							
+								<!-- th:href Redirecciona -->
+								<td><a  class="btn btn-success " style="height: 40px ; width: 80px " >Ver</a></td>
+								
+
+
+							</tr>
+						</tbody>
+
+					</table>
+			<div th:if="${mensaje}" class="alert alert-info">
+					<p th:text="${mensaje}"></p>
+			</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

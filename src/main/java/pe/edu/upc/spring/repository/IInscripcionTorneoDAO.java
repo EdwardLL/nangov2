@@ -14,8 +14,8 @@ import pe.edu.upc.spring.model.Usuario;
 @Repository
 public interface IInscripcionTorneoDAO extends JpaRepository<InscripcionTorneo, Integer> {
 
-	@Query("from InscripcionTorneo IT where IT.usuario=?1")
-	List<InscripcionTorneo> buscarTorneoPorUsuario(@Param("usuario")Usuario usuario);
+	@Query("from InscripcionTorneo IT where IT.usuario=?1 and IT.torneo=?2")
+	List<InscripcionTorneo> buscarTorneoPorUsuarioTorneo(@Param("usuario")Usuario usuario,@Param("torneo")Torneo torneo);
 	
 	@Query("from InscripcionTorneo IT where IT.torneo=?1")
 	List<InscripcionTorneo> buscarTorneoPorTorneo(@Param("torneo")Torneo torneo);

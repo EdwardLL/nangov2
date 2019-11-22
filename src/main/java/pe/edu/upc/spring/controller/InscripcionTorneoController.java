@@ -42,6 +42,7 @@ public class InscripcionTorneoController {
 	
 	Date fecha= new Date();
 
+	String ins="Platino";
 
 	@RequestMapping("/irBuscarTorneo")
 	public String irBuscarTorneo(Model model) {
@@ -78,13 +79,19 @@ public class InscripcionTorneoController {
 			    List<InscripcionTorneo> IT;			    
 			    objIns_Torneo.setUsuario(objIns_Torneo.getUsuario());
 			    objIns_Torneo.setTorneo(objIns_Torneo.getTorneo()); 
-			    IT=itService.buscarTorneoPorUsuario(objIns_Torneo.getUsuario());
+			    objIns_Torneo.setTorneo(objIns_Torneo.getTorneo());
+			    IT=itService.buscarTorneoPorUsuarioTorneo(objIns_Torneo.getUsuario(),objIns_Torneo.getTorneo());
 				if(IT.isEmpty()  && objIns_Torneo.getTorneo().getVacantes()>0 && objIns_Torneo.getUsuario().getSaldUsuario()>objIns_Torneo.getTorneo().getCostoTorneo()){
 				         
 				               objIns_Torneo.getTorneo().setVacantes(objIns_Torneo.getTorneo().getVacantes() -1);
 							   objIns_Torneo.getTorneo().getVideojuego().setNumcompetidores(objIns_Torneo.getTorneo().getVideojuego().getNumcompetidores()+1);
 							   objIns_Torneo.getUsuario().setSaldUsuario(objIns_Torneo.getUsuario().getSaldUsuario() - objIns_Torneo.getTorneo().getCostoTorneo() );
-							  
+							   objIns_Torneo.getUsuario().setNumInscrip(objIns_Torneo.getUsuario().getNumInscrip() + 1);
+							   
+							   if( objIns_Torneo.getUsuario().getNumInscrip()==3) {
+								   objIns_Torneo.getUsuario().setInsigUsuario(ins);
+							   }
+							   
 							   boolean flag = itService.insertar(objIns_Torneo);
 								    if(flag)
 									{

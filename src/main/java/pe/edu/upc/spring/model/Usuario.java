@@ -60,14 +60,14 @@ public class Usuario implements Serializable {
     @ManyToOne
 	@JoinColumn(name="idCiudad",nullable=false)
 	private Ciudad ciudad;
-	
+	private int NumInscrip=0;
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Usuario(int IDUsuario, String NUsuario, Date DBirth, int SaldUsuario,
-			String InsigUsuario, String ClvUsuario, String FUsuario, Ciudad ciudad,String EmailUsuario) {
+			String InsigUsuario, String ClvUsuario, String FUsuario, Ciudad ciudad,String EmailUsuario,int NumInscrip) {
 		super();
 		this.IDUsuario=IDUsuario;
 		this.NUsuario=NUsuario;
@@ -78,10 +78,19 @@ public class Usuario implements Serializable {
 		this.FUsuario=FUsuario;
 		this.ciudad=ciudad;
 		this.EmailUsuario=EmailUsuario;
+		this.NumInscrip=NumInscrip;
 	}
 
 	public int getIDUsuario() {
 		return IDUsuario;
+	}
+
+	public int getNumInscrip() {
+		return NumInscrip;
+	}
+
+	public void setNumInscrip(int numInscrip) {
+		NumInscrip = numInscrip;
 	}
 
 	public void setIDUsuario(int iDUsuario) {

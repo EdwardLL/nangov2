@@ -72,6 +72,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 	
 	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> buscarUsuarioID(int IDUsuario){
+		return dUsuario.buscarUsuarioID(IDUsuario);
+	}
+	
+	
+	@Override
 	public List<Usuario> buscarPorEmail(String Email){		
 		return dUsuario.buscarEmailUsuario(Email);
 	}

@@ -16,6 +16,6 @@ public interface IInscripcionTorneoService {
 	public void eliminar(int idTorneo);
 	public Optional<InscripcionTorneo> listarId(int idTorneo);
 	List<InscripcionTorneo> listar();
-	List<InscripcionTorneo> buscarTorneoPorUsuario(Usuario usuario);
+	List<InscripcionTorneo> buscarTorneoPorUsuarioTorneo(Usuario usuario,Torneo torneo);
 	List<InscripcionTorneo> buscarTorneoPorTorneo(Torneo torneo);
 }

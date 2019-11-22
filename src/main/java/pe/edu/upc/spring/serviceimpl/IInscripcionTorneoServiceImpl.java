@@ -70,8 +70,8 @@ public class IInscripcionTorneoServiceImpl implements IInscripcionTorneoService 
 	}
 	
 	@Override
-	public List<InscripcionTorneo> buscarTorneoPorUsuario(Usuario usuario){		
-		return dInscripcionTorneo.buscarTorneoPorUsuario(usuario);
+	public List<InscripcionTorneo> buscarTorneoPorUsuarioTorneo(Usuario usuario,Torneo torneo){		
+		return dInscripcionTorneo.buscarTorneoPorUsuarioTorneo(usuario,torneo);
 	}
 	
 	@Override

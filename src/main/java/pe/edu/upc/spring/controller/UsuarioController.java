@@ -141,6 +141,7 @@ public class UsuarioController {
 		}		
 	}
 	
+	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String,Object>model,@RequestParam(value="id")Integer id) {
 		
@@ -202,7 +203,7 @@ public class UsuarioController {
 	public String misTorneos(Map<String, Object> model, @ModelAttribute Usuario uSuario) throws ParseException {	
 		List<Usuario> Usuario2 ;
 		List<InscripcionTorneo> ITLista;
-		ITLista=itService.buscarTorneoPorUsuario(uSuario);
+	
 		uSuario.setEmailUsuario(uSuario.getEmailUsuario());
 		uSuario.setClvUsuario(uSuario.getClvUsuario());
 		Usuario2=uService.buscarPorEmailContrasenia(uSuario.getEmailUsuario(),uSuario.getClvUsuario());				
@@ -211,7 +212,7 @@ public class UsuarioController {
 			return "ingresarMisTorneos";
 		}
 		else {	
-		model.put("MisTorneos",ITLista);
+
 		return "MisTorneos";
 		}
 	}

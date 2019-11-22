@@ -17,6 +17,9 @@ public interface IUsuarioDao extends JpaRepository<Usuario,Integer> {
 	@Query("from Usuario u where u.EmailUsuario like %:EmailUsuario%")
 	List<Usuario> buscarEmailUsuario(@Param("EmailUsuario")String EmailUsuario);
 	
+	@Query("from Usuario u where u.IDUsuario=?1")
+	List<Usuario> buscarUsuarioID(@Param("IDUsuario")int IDUsuario);
+	
 	@Query("from Usuario u where u.EmailUsuario like %:EmailUsuario% and u.ClvUsuario like %:ClvUsuario%")
 	List<Usuario> buscarEmailContrasenia(@Param("EmailUsuario")String EmailUsuario,@Param("ClvUsuario")String ClvUsuario);
 	

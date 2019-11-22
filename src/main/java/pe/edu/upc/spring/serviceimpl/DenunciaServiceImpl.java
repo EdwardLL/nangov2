@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Denuncia;
+import pe.edu.upc.spring.model.InscripcionTorneo;
 import pe.edu.upc.spring.repository.IDenunciaDAO;
 import pe.edu.upc.spring.service.IDenunciaService;
 
@@ -21,6 +22,25 @@ public class DenunciaServiceImpl  implements IDenunciaService {
 	@Transactional(readOnly=true)
 	public List<Denuncia> listar(){
 		return dDenuncia.findAll();
+	}
+	
+	@Override
+	@Transactional
+	public void eliminar(int idITorneo) {
+		dDenuncia.deleteById(idITorneo);
+	}
+	
+	@Override
+	@Transactional
+	public boolean insertar(Denuncia dTorneo) {
+		
+		
+		Denuncia objUsuario =dDenuncia.save(dTorneo);
+			
+		if(objUsuario==null)
+			return false;
+		else
+			return true;
 	}
 	
 	@Override

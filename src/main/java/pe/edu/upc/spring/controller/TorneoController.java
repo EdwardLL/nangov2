@@ -204,6 +204,8 @@ public class TorneoController {
 		}		
 	}
 	
+	
+	
 	@RequestMapping("/verTorneo2/{id}")
     public String verTorneo2(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Torneo> objTorneo =tService.listarId(id);

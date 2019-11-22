@@ -3,6 +3,8 @@ package pe.edu.upc.spring.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.repository.query.Param;
+
 import pe.edu.upc.spring.model.Usuario;
 
 public interface IUsuarioService {
@@ -17,4 +19,5 @@ public interface IUsuarioService {
 	List<Usuario> listar();
 	List<Usuario> buscarPorEmail(String EmailUsuario);
 	List<Usuario> buscarPorEmailContrasenia(String nombreUsuario,String contra);
+	List<Usuario> buscarUsuarioID(int IDUsuario);
 }

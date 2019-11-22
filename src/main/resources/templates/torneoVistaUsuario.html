@@ -117,7 +117,7 @@
 								<td th:text="${t.usuario.NUsuario}"></td>
 								<td th:text="${t.usuario.InsigUsuario}"></td>
 								<td th:text="${t.usuario.ciudad.nombreCiudad}" ></td>
-								<td><a  class="btn btn-danger" style="height: 40px ; width: 80px " >Denunciar</a></td>
+								<td><a th:href="@{'/denuncia/denunciar/'} + ${t.usuario.IDUsuario}" class="btn btn-danger" style="height: 40px ; width: 80px " >Denunciar</a></td>
 							
 							</tr>
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Registro</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/categoria.js}"></script>
+
+</head>
+<body>
+	<div class="form-group">
+					<h2 class="text-center my-15">Denunciar Jugador</h2>
+						
+	</div>	
+	<div class="container">
+		<form th:action="@{/denuncia/registrar}" method="post"
+			th:object="${denuncia}">
+										
+				 <label >Usuario:</label> 		    	
+				<select  class="form-control" th:field="*{usuario}" readonly="readonly">
+				  <option th:each="usuario: ${usuarioN}" th:text="${usuario.NUsuario}"
+				          th:value="${usuario.IDUsuario}"  ></option>	  
+				</select>	
+				
+				<label >Mensaje de denuncia:</label> 
+				<input type="text"	th:field="*{mensajeDenuncia}"
+				class="form-control" id="mensajeDenuncia" ></input>
+			<br>
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/torneo/Torneos" class="btn btn-danger">Cancelar</a>
+						
+		</form>
+		
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+	
+		
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
