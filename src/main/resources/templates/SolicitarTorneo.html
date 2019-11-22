@@ -15,35 +15,43 @@
 </head>
 <body>
 	<div class="form-group">
-					<h2 class="text-center my-15">Inscripcion a Torneo</h2>
+					<h2 class="text-center my-15">Solicitar Aprobacion de Torneo</h2>
 						
 	</div>	
 	<div class="container">
-		<form th:action="@{/InscripcionTorneo/registrar}" method="post"
-			th:object="${InscripcionTorneo}">
+		<form th:action="@{/SolicitudTorneo/registrar}" method="post"
+			th:object="${SolicitudTorneo}">
 						
-				 <label for="torneo">Torneo:</label> 		    	
+				 <label >Torneo a solicitar:</label> 		    	
 				<select  class="form-control" th:field="*{torneo}" >
 				  <option th:each="torneo: ${torneos}" th:text="${torneo.nombreTorneo}"
 				          th:value="${torneo.idTorneo}"  ></option>	  
 				</select>
 				
-				 <label for="usuario">Usuario:</label> 		    	
+				<label for="usuario">Usuario:</label> 		    	
 				<select  class="form-control" th:field="*{usuario}" readonly="readonly">
 				  <option th:each="usuario: ${usuarioN}" th:text="${usuario.NUsuario}"
 				          th:value="${usuario.IDUsuario}"  ></option>	  
-				</select>					
+				</select>
+				<hr>
+				<p align="center">Respuesta del Administrador</p>
+				
+				<label for="estadSolicitud">Estado de Solicitud:</label> 		    	
+				<select  class="form-control" th:field="*{estadSolicitud}"  readonly="readonly" >
+				  <option th:value="Pendiente"  >Pendiente</option>	
+				  <option th:value="Aprobado"  >Aprobado</option>
+				  <option th:value="Rechazado"  >Rechazado</option>					 	  
+				</select>
+				
+				<label for="mensjSolicitud">Mensaje de Administrador:</label> 			
+                <input type="text" th:field="*{mensjSolicitud}"
+				class="form-control" id="mensjSolicitud" readonly="readonly" ></input>
+								
 			<br>
 			<button type ="submit" class="btn btn-primary">Aceptar</button>
 			<a href="/usuario/irNANGO" class="btn btn-danger">Cancelar</a>
-						
+			
 		</form>
-		
-		<div th:if="${mensaje}" class="alert alert-info">
-			<p th:text="${mensaje}"></p>
-		</div>
-	
-		
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>

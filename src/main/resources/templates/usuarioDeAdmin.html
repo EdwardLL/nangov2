@@ -16,10 +16,12 @@
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
+	<h2 class="text-center my-15">Modificar Usuario</h2>
+	<hr>
 		<form th:action="@{/usuario/registrarAdmi}" method="post"
 			th:object="${usuario}">
 			<div class="form-group">
-					<label for="IDUsuario">ID:</label> <input type="text" readonly="readonly"
+					<label for="IDUsuario">Codigo de Usuario:</label> <input type="text" readonly="readonly"
 					class="form-control" th:field="*{IDUsuario}"></input>
 				<div class="form-group">
 				

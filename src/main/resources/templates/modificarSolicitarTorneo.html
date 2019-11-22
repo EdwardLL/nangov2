@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Registro</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/categoria.js}"></script>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header" ></div>
+	<div class="form-group">
+					<h2 class="text-center my-15">Modificar Solicitud de Torneo</h2>
+						
+	</div>	
+	<div class="container">
+		<form th:action="@{/SolicitudTorneo/registrar2}" method="post"
+			th:object="${SolicitudTorne}">
+				
+				<label for="idSolicitud">Codigo de Solicitud:</label> 			
+                <input type="text" th:field="*{idSolicitud}"
+				class="form-control" id="idSolicitud" readonly="readonly"  ></input>
+					
+				 <label >Torneo a solicitar:</label> 		    	
+				<select  class="form-control" th:field="*{torneo}" readonly="readonly"  >
+				  <option th:each="torneo: ${torneos}" th:text="${torneo.nombreTorneo}"
+				          th:value="${torneo.idTorneo}"  ></option>	  
+				</select>
+				
+				<label for="usuario">Usuario:</label> 		    	
+				<select  class="form-control" th:field="*{usuario}" readonly="readonly"  >
+				  <option th:each="usuario: ${usuarioN}" th:text="${usuario.NUsuario}"
+				          th:value="${usuario.IDUsuario}"  ></option>	  
+				</select>
+				<hr>
+				<p align="center">Respuesta del Administrador</p>
+				
+				<label for="estadSolicitud">Estado de Solicitud:</label> 		    	
+				<select  class="form-control" th:field="*{estadSolicitud}"  >
+				  <option th:value="Aprobado"  >Aprobado</option>
+				  <option th:value="Rechazado"  >Rechazado</option>					 	  
+				</select>
+				
+				<label for="mensjSolicitud">Mensaje de Administrador:</label> 			
+                <input type="text" th:field="*{mensjSolicitud}"
+				class="form-control" id="mensjSolicitud" ></input>
+								
+			<br>
+			<div th:if="${mensaje}" class="alert alert-info">
+					<p th:text="${mensaje}"></p>
+			</div>		
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/SolicitudTorneo/listar" class="btn btn-danger">Cancelar</a>
+			
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

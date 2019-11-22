@@ -15,73 +15,79 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-		<h2 class="text-center my-15">Torneo</h2>
-
+	<h2 class="text-center my-15">Crear Torneo</h2>
 	<div class="container">
-		<hr>
-		<form th:action="@{/torneo/registrar}" method="post" th:object="${torneo}">
+	<hr>
+	<div class="container">
+		<form th:action="@{/torneo/registrar2}" method="post"
+			th:object="${torneo}">
 			<div class="form-group">
-				
 				<label for="nombreTorneo">Nombre:</label> 
 				<input type="text"	th:field="*{nombreTorneo}"
-				class="form-control" id="nombreTorneo" readonly="readonly"></input>
+				class="form-control" id="nombreTorneo"></input>
+				<p th:if="${#fields.hasErrors('nombreTorneo')}" th:errors="*{nombreTorneo}" class="alert alert-danger" ></p>
+				
 				
 				<label for="fechaInicio">Fecha de inicio:</label> 			
                 <input type="date" th:field="*{fechaInicio}"
-				class="form-control" id="fechaInicio" readonly="readonly" ></input>
+				class="form-control" id="fechaInicio"></input>
+				<p th:if="${#fields.hasErrors('fechaInicio')}" th:errors="*{fechaInicio}" class="alert alert-danger" ></p>
 				
 				<label for=" HoraInicio">Hora de Inicio:</label> 			
                 <input type="time" th:field="*{HoraInicio}"
-				class="form-control" id=" HoraInicio" readonly="readonly"></input>
+				class="form-control" id=" HoraInicio"></input>
+				
 				
 				<label for="FechaFin">Fecha de Fin:</label> 			
                 <input type="date" th:field="*{FechaFin}"
-				class="form-control" id="FechaFin" readonly="readonly"></input>
-						
+				class="form-control" id="FechaFin"></input>
+				<p th:if="${#fields.hasErrors('FechaFin')}" th:errors="*{FechaFin}" class="alert alert-danger" ></p>
+					
 				<label for=" HoraFin">Hora Fin:</label> 			
                 <input type="time" th:field="*{HoraFin}"
-				class="form-control" id=" HoraFin" readonly="readonly"></input>	
+				class="form-control" id=" HoraFin"></input>	
 				
 				<label for="costoTorneo">Costo:</label> 			
                 <input type="text" th:field="*{costoTorneo}"
-				class="form-control" id="costoTorneo" readonly="readonly"></input>
+				class="form-control" id="costoTorneo"></input>
 				
 				<label for="premioTorneo">Premio:</label> 			
                 <input type="text" th:field="*{premioTorneo}"
-				class="form-control" id="premioTorneo" readonly="readonly"></input>
+				class="form-control" id="premioTorneo"></input>
 				
 				<label for="platafTorneo">Plataforma:</label> 		    	
-				<select  class="form-control" th:field="*{platafTorneo}" readonly="readonly" >
+				<select  class="form-control" th:field="*{platafTorneo}" >
 				  <option th:value="PC"  >PC</option>
 				  <option th:value="PlayStation"  >PlayStation</option>		  
 				</select>
 				
 				<label for="vacantes">Vacantes:</label> 			
                 <input type="text" th:field="*{vacantes}"
-				class="form-control" id="vacantes" readonly="readonly" ></input>
+				class="form-control" id="vacantes"></input>
 											
 				<label for="estadCreaTorneo">Estado de Creacion:</label> 		    	
-				<select  class="form-control" th:field="*{estadCreaTorneo}" readonly="readonly" >
-				  <option th:value="Pendiente"  >Pendiente</option>	
-				  <option th:value="Rechazado"  >Rechazado</option>	
+				<select  class="form-control" th:field="*{estadCreaTorneo}"  readonly="readonly" >
+				<option th:value="Pendiente"  >Pendiente</option>	
 				  <option th:value="Aprobado"  >Aprobado</option>	  
+				  <option th:value="Rechazado"  >Rechazado</option>	
+				 	  
 				</select>			
 			
 				 <label for="videojuego">Videojuego:</label> 		    	
-				<select  class="form-control" th:field="*{videojuego}" readonly="readonly" >
+				<select  class="form-control" th:field="*{videojuego}" >
 				  <option th:each="v: ${videojuegos}" th:text="${v.nombreVideojuego}"
 				          th:value="${v.idVideojuego}"  ></option>	  
 				</select>
 				
 				<label for="estadTranscuTorneo">Estado de Transcurso:</label> 		    	
-				<select  class="form-control" th:field="*{estadTranscuTorneo}" readonly="readonly">
+				<select  class="form-control" th:field="*{estadTranscuTorneo}" readonly="readonly" >
 				  <option th:value="Espera"  >Espera</option>	
 				  <option th:value="Encurso"  >En curso</option>	
 				  <option th:value="Finalizado"  >Finalizado</option>	  
 				</select>	
 				
 				<label for="modoTorneo">Modo:</label> 		    	
-				<select  class="form-control" th:field="*{modoTorneo}" readonly="readonly" >
+				<select  class="form-control" th:field="*{modoTorneo}" >
 				  <option th:value="1vs1"  >1 vs 1</option>	
 				  <option th:value="2vs2"  >2 vs 2</option>	
 				  <option th:value="3vs3"  >3 vs 3</option>
@@ -90,44 +96,19 @@
 				</select>
 				
 				<label for="servidor">Servidor:</label> 		    	
-				<select  class="form-control" th:field="*{servidor}" readonly="readonly" >
+				<select  class="form-control" th:field="*{servidor}" >
 				  <option th:each="s: ${servidores}" th:text="${s.nombreServidor}"
 				          th:value="${s.idServidor}"  ></option>	  
 				</select>
-				
-				
-			</div>										</form>
-		<h2 class="text-center my-15">Usuarios Registrados</h2>
-		<hr>
-		
-		<table class="table  table-bordered table-hover "
-			id="tab_logic">
-			<thead >
-				<tr class="bg-primary" >
-								<th class="text-center" >USUARIO</th>
-								<th class="text-center">INSIGNIA</th>
-								<th class="text-center" >CIUDAD</th>
-								<th class="text-center">OPERACION</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="t: ${Inscritos}" align="center"> 
-							<!-- th:text muestra una linea de texto -->
-								<td th:text="${t.usuario.NUsuario}"></td>
-								<td th:text="${t.usuario.InsigUsuario}"></td>
-								<td th:text="${t.usuario.ciudad.nombreCiudad}" ></td>
-								<td><a  class="btn btn-danger" style="height: 40px ; width: 80px " >Denunciar</a></td>
-							
-							</tr>
-
-			</tbody>
-		</table>
-		
-		
-		<a href="/torneo/irTorneos" class="btn btn-info">Regresar</a>		
-	</div>			
-	
+			</div>
+			
+			<div class ="col-md-7 ">
+			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/usuario/listar" class="btn btn-danger">Cancelar</a>
+			</div>
+			
+		</form>
+	</div>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -32,12 +32,6 @@ public class Denuncia implements Serializable{
 	
 	private String mensajeDenuncia;
 	
-	@NotNull
-	@Past(message="No puedes seleccionar un dia que todavia NO existe")
-	@Temporal(TemporalType.DATE) //permite trabajar fechas
-	@Column(name="fechaDenuncia")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date fechaDenuncia;
 
 	@ManyToOne
 	@JoinColumn(name="IDUsuario",nullable=false)
@@ -48,11 +42,10 @@ public class Denuncia implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Denuncia(int idDenuncia, String mensajeDenuncia,Date fechaDenuncia,Usuario usuario) {
+	public Denuncia(int idDenuncia, String mensajeDenuncia,Usuario usuario) {
 		super();
 		this.idDenuncia = idDenuncia;
 		this.mensajeDenuncia = mensajeDenuncia;
-		this.fechaDenuncia=fechaDenuncia;
 		this.usuario = usuario;
 	}
 
@@ -70,14 +63,6 @@ public class Denuncia implements Serializable{
 
 	public void setMensajeDenuncia(String mensajeDenuncia) {
 		this.mensajeDenuncia = mensajeDenuncia;
-	}
-
-	public Date getFechaDenuncia() {
-		return fechaDenuncia;
-	}
-
-	public void setFechaDenuncia(Date fechaDenuncia) {
-		this.fechaDenuncia = fechaDenuncia;
 	}
 
 	public Usuario getUsuario() {

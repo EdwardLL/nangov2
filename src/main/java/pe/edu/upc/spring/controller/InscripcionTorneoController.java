@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.spring.model.Torneo;
+import pe.edu.upc.spring.model.InscripcionTorneo;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,6 +40,8 @@ public class InscripcionTorneoController {
 	@Autowired
 	private IUsuarioService uService;
 	
+	Date fecha= new Date();
+
 
 	@RequestMapping("/irBuscarTorneo")
 	public String irBuscarTorneo(Model model) {
@@ -67,27 +71,46 @@ public class InscripcionTorneoController {
 	public String registrar(@ModelAttribute @Valid InscripcionTorneo objIns_Torneo,
 			BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors()) {
+			model.addAttribute("mensaje","Usuario ya inscrito");
 			return "redirect:/InscripcionTorneo/irRegistrar";
 		}
 		else {
-			if(objIns_Torneo.getTorneo().getVacantes()>0)
-			{	
-				objIns_Torneo.getTorneo().setVacantes(objIns_Torneo.getTorneo().getVacantes()-1);
-				    boolean flag = itService.insertar(objIns_Torneo);
-					model.addAttribute("listaTorneo",tService.listar());
-					return "redirect:/torneo/listar";
-			}
-			else {
-				return "redirect:/InscripcionTorneo/irRegistrar";	
-			}
+			    List<InscripcionTorneo> IT;			    
+			    objIns_Torneo.setUsuario(objIns_Torneo.getUsuario());
+			    objIns_Torneo.setTorneo(objIns_Torneo.getTorneo()); 
+			    IT=itService.buscarTorneoPorUsuario(objIns_Torneo.getUsuario());
+				if(IT.isEmpty()  && objIns_Torneo.getTorneo().getVacantes()>0 && objIns_Torneo.getUsuario().getSaldUsuario()>objIns_Torneo.getTorneo().getCostoTorneo()){
+				         
+				               objIns_Torneo.getTorneo().setVacantes(objIns_Torneo.getTorneo().getVacantes() -1);
+							   objIns_Torneo.getTorneo().getVideojuego().setNumcompetidores(objIns_Torneo.getTorneo().getVideojuego().getNumcompetidores()+1);
+							   objIns_Torneo.getUsuario().setSaldUsuario(objIns_Torneo.getUsuario().getSaldUsuario() - objIns_Torneo.getTorneo().getCostoTorneo() );
+							  
+							   boolean flag = itService.insertar(objIns_Torneo);
+								    if(flag)
+									{
+								    	model.addAttribute("listaTorneo",tService.listar());
+									    return "redirect:/torneo/listar";
+									}
+								    else {
+								    	model.addAttribute("mensaje","Ocurrio un problema");
+										return "redirect:/InscripcionTorneo/irRegistrar";
+								    }						  
+				           
+			            	
+				}
+				else {
+					model.addAttribute("mensaje","Ocurrio un problema");
+					return "redirect:/InscripcionTorneo/irRegistrar";
+				}
 			
 		}
 				
 	}
 	
-	
-	
 		
+	
+	
+	
 }
 		
 	

@@ -15,10 +15,7 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-		<h2 class="text-center my-15">Torneo</h2>
-
 	<div class="container">
-		<hr>
 		<form th:action="@{/torneo/registrar}" method="post" th:object="${torneo}">
 			<div class="form-group">
 				
@@ -96,36 +93,12 @@
 				</select>
 				
 				
-			</div>										</form>
-		<h2 class="text-center my-15">Usuarios Registrados</h2>
-		<hr>
+			</div>
+			
+			<a href="/usuario/iringresarMisTorneos" class="btn btn-info">Regresar</a>
+			
+		</form>
 		
-		<table class="table  table-bordered table-hover "
-			id="tab_logic">
-			<thead >
-				<tr class="bg-primary" >
-								<th class="text-center" >USUARIO</th>
-								<th class="text-center">INSIGNIA</th>
-								<th class="text-center" >CIUDAD</th>
-								<th class="text-center">OPERACION</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="t: ${Inscritos}" align="center"> 
-							<!-- th:text muestra una linea de texto -->
-								<td th:text="${t.usuario.NUsuario}"></td>
-								<td th:text="${t.usuario.InsigUsuario}"></td>
-								<td th:text="${t.usuario.ciudad.nombreCiudad}" ></td>
-								<td><a  class="btn btn-danger" style="height: 40px ; width: 80px " >Denunciar</a></td>
-							
-							</tr>
-
-			</tbody>
-		</table>
-		
-		
-		<a href="/torneo/irTorneos" class="btn btn-info">Regresar</a>		
 	</div>			
 	
 	<div th:replace="fragments/footer :: footer"></div>

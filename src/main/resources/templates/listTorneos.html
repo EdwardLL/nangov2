@@ -13,33 +13,30 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-  
-   
+ 
 	<div th:replace="fragments/header :: header" ></div>
 
-
-	
 	<h2 class="text-center my-15" >Mantenimiento de Torneos</h2>
 	
 	<div class="container">
+	<hr>
+	<a style="border-bottom-color: green" th:href="@{/torneo/irRegistrar}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md btn-block"> <span
+						class="glyphicon glyphicon-plus"></span> Agregar Torneo
+					</a>
+	</div>
+	<div class="container">
+	<hr>
 		<form id="myform">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<a style="border-bottom-color: green" th:href="@{/torneo/irRegistrar}"
-						id="add-row" type="button"
-						class="btn btn-primary btn-md left-block"> <span
-						class="glyphicon glyphicon-plus"></span> Agregar Torneo
-					</a>
-					<a style="border-bottom-color: green" th:href="@{/torneo/irBuscarlistaTorneoUsuarios}"
-						id="add-row" type="button"
-						class="btn btn-primary btn-md left-block"> <span
-						class="glyphicon glyphicon-search"></span> 
-					</a>
 					
-					<table class="table table-bordered table-hover table-striped"
+					
+					<table class="table table-bordered table-hover table-striped "
 						id="tab_logic">
 						<thead>
-							<tr>
+							<tr class="bg-primary">
 								<th class="text-center"  >VIDEOJUEGO</th>
 								<th class="text-center">TORNEO</th>
 								<th class="text-center">MODO</th>
@@ -48,29 +45,30 @@
 								<th class="text-center">VACANTES</th>
 								<th class="text-center">SERVIDOR</th>
 								<th class="text-center">ESTADO</th>
-								<th class="text-center">Z.HORARIA</th>
+								<th class="text-center">SOLICITUD</th>
 								<th class="text-center">OPERACIÓN</th>
-								<th class="text-center">OPERACIÓN</th>
-								<th class="text-center">OPERACIÓN</th>
+								<th class="text-center">MODIFICAR</th>
+								<th class="text-center">ELIMINAR</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="t: ${listaTorneo}">
+							<tr th:each="t: ${listaTorneo}" align="center" >
 							<!-- th:text muestra una linea de texto -->
 								<td th:text="${t.videojuego.nombreVideojuego}"></td>
 								<td th:text="${t.nombreTorneo}"></td>
 								<td th:text="${t.modoTorneo}"></td>
-								<td th:text="${#dates.format(t.fechaInicio,'dd/MM/yyyy')}"></td>
+								<td th:text="${t.fechaInicio}"></td>
 								<td th:text="${t.costoTorneo}"></td>
 								<td th:text="${t.vacantes}"></td>
 								<td th:text="${t.servidor.nombreServidor}"></td>
 								<td th:text="${t.estadTranscuTorneo}"></td>
-								<td th:text="${t.servidor.ciudad.zonahoraria.nombreZonaHoraria}"></td>
+								<td th:text="${t.estadCreaTorneo}"></td>
 															
 								<!-- th:href Redirecciona -->
-								<td><a th:href="@{/torneo/eliminar?id=}+${t.idTorneo}">Ver</a></td>
-								<td><a th:href="@{/torneo/eliminar?id=}+${t.idTorneo}">Eliminar</a></td>
-								<td><a th:href="@{'/torneo/modificar/' + ${t.idTorneo}}">Modificar</a></td>
+								<td><button th:href="@{/torneo/verTorneo2?id=}+${t.idTorneo}"  class="btn btn-success " style="height: 40px ; width: 80px " >Ver</button></td>
+								<td><a th:href="@{'/torneo/modificar/' + ${t.idTorneo}}"><span class="glyphicon glyphicon-pencil" style=" "></span></a></td>
+								<td><a th:href="@{/torneo/eliminar?id=}+${t.idTorneo}"><span class="glyphicon glyphicon-trash" style=" "></span></a></td>
+								
 
 
 							</tr>

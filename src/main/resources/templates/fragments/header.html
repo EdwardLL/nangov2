@@ -19,34 +19,50 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li ><a class="active" th:href="@{/torneo//irBuscarTorneo}" >Torneos</a></li>
-												
+						<li ><a class="active" th:href="@{/torneo/irTorneos}" >Torneos</a></li>
+					    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" th:text=" ${user}" role="button" href="" >Zona Horaria<span class="caret"></span></a>
+							 <ul class="dropdown-menu" >
+							    <li ><a th:href="@{/usuario/listar}">General</a></li>	
+								<li ><a th:href="@{/usuario/listar}">UTC-9</a></li>																			
+								<li ><a th:href="@{/usuario/listar}" >UTC-8</a></li>	
+								<li ><a  th:href="@{/usuario/listar}" >UTC-7</a></li>
+								<li ><a th:href="@{/usuario/listar}">UTC-6</a></li>																			
+								<li ><a th:href="@{/usuario/listar}" >UTC-5</a></li>	
+								<li ><a  th:href="@{/usuario/listar}" >UTC-4</a></li>
+								<li ><a th:href="@{/usuario/listar}" >UTC-3</a></li>	
+								<li ><a  th:href="@{/usuario/listar}" >UTC-2</a></li>
+								<li ><a  th:href="@{/usuario/listar}" >UTC-1</a></li>		
+							</ul>
+						</li>	
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" href="" >Mantenimiento<span class="caret"></span></a>
 							 <ul class="dropdown-menu" >
 								<li><a class="dropdown-item" th:href="@{/usuario/listar}" >Mant. de Usuarios</a></li>																			
 								<li><a class="dropdown-item" th:href="@{/torneo/listar}" >Mant. de Torneos</a></li>
+								<li><a class="dropdown-item" th:href="@{/SolicitudTorneo/listar}" >Mant. de Solicitudes</a></li>
 							 </ul>
 						</li>	
 				
 						<li ><a class="active" >Estadisticas</a></li>	
-						<li ><a class="active"  th:href="@{/InscripcionTorneo/irRegistrar} ">Inscripcion</a></li>			
-					</ul>	
 						
-							
 									
+					</ul>	
+														
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" th:text="${usuarioprueba}" role="button" href="" >Usuario<span class="caret"></span></a>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" href="" >Usuario<span class="caret"></span></a>
 							 <ul class="dropdown-menu" >
-								<li ><a th:href="@{/usuario/listar}">Solicitudes</a></li>																			
-								<li ><a th:href="@{/usuario/listar}" >Torneos inscritos</a></li>	
+								<li ><a th:href="@{/usuario/iringresarInscribirseATorneo}">Inscribirse a torneo</a></li>
+								<li ><a th:href="@{/usuario/iringresarSolicitarTorneo} ">Solicitar torneo</a></li>	
+								<li class="divider"></li>																			
+								<li ><a th:href="@{/usuario/iringresarMisTorneos}" >Torneos inscritos</a></li>
+								<li ><a th:href="@{/usuario/listar}">Solicitudes de torneos</a></li>
+								<li class="divider"></li>	
 								<li ><a  th:href="@{/usuario/listar}" >Ver perfil</a></li>	
 								<li class="divider"></li>																		
 								<li ><a th:href="@{/usuario/bienvenida}" >Cerrar sesión</a></li>	
 							</ul>
 						</li>			                  
    					</ul>
-   					
-  					  					        					
+   										  					        					
 				</div>		
 			</div>
 		</nav>

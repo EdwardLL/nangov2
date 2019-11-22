@@ -14,11 +14,17 @@ import pe.edu.upc.spring.model.Videojuego;
 @Repository
 public interface ITorneoDAO extends JpaRepository<Torneo, Integer>{
 
-	@Query("from Torneo t where t.videojuego= ?1 ")
-	List<Torneo> buscarTorneoPorVideojuego(@Param("videojuego")Videojuego videojuego);
+	@Query("from Torneo t where t.estadCreaTorneo= ?1" )
+	List<Torneo> buscarTorneoPorECT(@Param("estadCreaTorneo")String estadCreaTorneo);
+	
+	@Query("from Torneo t where t.estadCreaTorneo= ?1  and t.estadTranscuTorneo!= ?2 ")
+	List<Torneo> buscarTorneoPorAprobado(@Param("estadCreaTorneo")String estadCreaTorneo,@Param("estadTranscuTorneo")String estadTranscuTorneo);
 	
 	@Query("from Torneo t where t.costoTorneo= ?1")
 	List<Torneo> buscarTorneoPorCosto(@Param("costoTorneo")int costoTorneo);
+	
+	@Query("from Torneo t where t.idTorneo= ?1")
+	Torneo escogeTorneo(@Param("idTorneo")int idTorneo);
 	
 	@Query("from Torneo t where t.estadTranscuTorneo like %:estadTranscuTorneo%")
 	List<Torneo> buscarTorneoPorEstadoDeTranscurso(@Param("estadTranscuTorneo")String estadTranscuTorneo);

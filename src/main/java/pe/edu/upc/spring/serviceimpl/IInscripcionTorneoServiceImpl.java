@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.InscripcionTorneo;
+import pe.edu.upc.spring.model.Torneo;
+import pe.edu.upc.spring.model.Usuario;
 import pe.edu.upc.spring.repository.IInscripcionTorneoDAO;
 import pe.edu.upc.spring.service.IInscripcionTorneoService;
 
@@ -21,7 +23,11 @@ public class IInscripcionTorneoServiceImpl implements IInscripcionTorneoService 
 	@Override
 	@Transactional
 	public boolean insertar(InscripcionTorneo itorneo) {
+		
+		
 		InscripcionTorneo objUsuario =dInscripcionTorneo.save(itorneo);
+		
+		
 		if(objUsuario==null)
 			return false;
 		else
@@ -64,8 +70,13 @@ public class IInscripcionTorneoServiceImpl implements IInscripcionTorneoService 
 	}
 	
 	@Override
-	public List<InscripcionTorneo> buscarTorneoPorUsuario(String usuario){		
+	public List<InscripcionTorneo> buscarTorneoPorUsuario(Usuario usuario){		
 		return dInscripcionTorneo.buscarTorneoPorUsuario(usuario);
+	}
+	
+	@Override
+	public List<InscripcionTorneo> buscarTorneoPorTorneo(Torneo torneo){		
+		return dInscripcionTorneo.buscarTorneoPorTorneo(torneo);
 	}
 	
 }

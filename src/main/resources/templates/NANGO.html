@@ -16,30 +16,97 @@
 <body>
 
 <div th:replace="fragments/header :: header"></div>
-				<div class="row">
-				  <div class="col-md-12">
 				
-				    <div id="mdb-lightbox-ui"></div>
+			<section id="videojuegos">
+				<div class="container">
+						<div>
+							<h1 align="center">Videojuegos</h1>
+						</div>
+						<hr>
+					<div class="col-md-12">											
+						<div class="carousel slide" data-ride="carousel">							
+							<div class="carousel-inner" role="listbox">
+								<div class="item" data-target="#carousel-1" >
+									<img src="http://libertywallpaper.com/wp-content/uploads/2019/06/PCGGiJM-dota-2-wallpapers.jpg" style="width: 1120px;height: 600px" class="img-responsive">
+								</div>
+								<div class="item active">
+									<img src="https://i.pinimg.com/originals/fb/3d/7e/fb3d7e66864c619b9211950e97607ccc.jpg" style="width: 1120px;height: 600px" class="img-responsive">
+								</div>
+								<div class="item " data-target="#carousel-2">
+									<img src="https://www.eltiempo.com/files/article_main/uploads/2017/11/23/5a1752109dac7.jpeg" style="width: 1120px;height: 600px" class="img-responsive">
+								</div>
+								<a href="#carousel-1" class="left carousel-control" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Anterior</span>
+								</a>
+								<a href="#carousel-2" class="right carousel-control" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Siguiente</span>
+								</a>
+							</div>
+							
+						</div>
+						<br>
+						
+				</div>	
+						
+						<hr>
+						<table class="table table-bordered table-hover table-striped "
+						id="tab_logic">
+						<thead>
+							<tr class="bg-success">
+								<th class="text-center"  >VIDEOJUEGO</th>
+								<th class="text-center">COMPETIDORES</th>
+								<th class="text-center">OPERACION</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="t: ${listaV}" align="center" >
+							<!-- th:text muestra una linea de texto -->
+								<td th:text="${t.nombreVideojuego}"></td>
+								<td th:text="${t.numcompetidores}"></td>
+								<td><a class="btn btn-success " style="height: 40px ; width: 80px " >Ver</a></td>
+
+
+							</tr>
+						</tbody>
+
+					</table>
+					<hr>	
+									
+						<div>
+							<h1 align="center">Nuestro Equipo</h1>
+						</div>
+						<hr>
+						<div class="card-deck">
+							<div class="card-group" >
+								<div class="card " style="width: 240px">
+								  <img class="card-img-top" style="width: 240px; height: 227px" th:src="@{/imagenes/Imagen1.png}" >
+								  <div class="card-body">
+								    <h5 class="card-title" align="left" ><b>Edward Lopez Lua</b></h5>
+								    <p class="card-text" align="left">Some quick example text to build on the card title and make up the bulk of the card's content</p>
+								    <button href="#" class="btn btn-primary" style="margin-right: 250px">Ver Perfil</button>
+								  </div>							  
+								</div>
+								<br>
+								<div class="card " style="width: 240px">
+								  <img class="card-img-top" style="width: 240px; height: 227px" th:src="@{/imagenes/Imagen2.png}" >
+								  <div class="card-body">
+								    <h5 class="card-title" align="left" ><b>Diego Reategui Campos</b></h5>
+								    <p class="card-text" align="left">Some quick example text to build on the card title and make up the bulk of the card's content</p>
+								    <button href="#" class="btn btn-primary" style="margin-right: 250px">Ver Perfil</button>
+								  </div>							  
+								</div>													
+							</div>
+							
+						</div>
+															
+								
+				</div>				
+			</section>
+			
+			
 				
-				    <div class="mdb-lightbox no-margin">
-				
-				      <figure class="col-md-4">
-				        <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(121).jpg"
-				          data-size="800x500">
-				          <img alt="picture" src="https://static-cdn.jtvnw.net/ttv-boxart/Dota%202-144x192.jpg"
-				            width="144px" height="192px">
-				          
-				        </a>
-				      </figure>
-				
-				  
-				
-				   
-				
-				    </div>
-				
-				  </div>
-				</div>
-	
 </body>
 </html>

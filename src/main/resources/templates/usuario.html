@@ -19,30 +19,36 @@
 						
 	</div>	
 	<div class="container">
-		<form th:action="@{/usuario/registrar}" method="post"
+	<hr>
+		<form th:action="@{/usuario/registrar}" method="post" class="form-horizontal"
 			th:object="${usuario}">
 			<div class="form-group">
 					
-				
-				<label for="NUsuario">Nombre:</label> 
-				<input type="text"	th:field="*{NUsuario}"
-				class="form-control" id="NUsuario"></input>
-				
+					
+				<label class="control-label" for="NUsuario" >Nombre</label> 
+				<input type="text" th:field="*{NUsuario}" id="NUsuario" class="form-control"></input>
+			    <p th:if="${#fields.hasErrors('NUsuario')}" th:errors="*{NUsuario}" class="alert alert-danger" ></p>
+			
 				<label for="DBirth">Fecha de nacimiento:</label> 			
                 <input type="date" th:field="*{DBirth}"
-				class="form-control" id="DBirth"></input>
+				class="form-control" id="DBirth" min="${execInfo.now}"></input>
+				<p th:if="${#fields.hasErrors('DBirth')}" th:errors="*{DBirth}" class="alert alert-danger" ></p>
+				
 				
 				<label for="EmailUsuario">Correo electronico:</label> 			
                 <input type="text" th:field="*{EmailUsuario}"
 				class="form-control" id="EmailUsuario"></input>
+				<p th:if="${#fields.hasErrors('EmailUsuario')}" th:errors="*{EmailUsuario}" class="alert alert-danger" ></p>
 				
 				<label for="ClvUsuario" >Clave:</label> 			
                 <input type="password" th:field="*{ClvUsuario}"
 				class="form-control" id="ClvUsuario"></input>
+				<p th:if="${#fields.hasErrors('ClvUsuario')}" th:errors="*{ClvUsuario}" class="alert alert-danger" ></p>
 				
 				<label for="SaldUsuario">Saldo:</label> 			
                 <input type="text" th:field="*{SaldUsuario}"
 				class="form-control" id="SaldUsuario"></input>
+			    <p th:if="${#fields.hasErrors('SaldUsuario')}" th:errors="*{SaldUsuario}" class="alert alert-danger" ></p>
 			
 				<label for="InsigUsuario">Insignia:</label> 		    	
 				<select  class="form-control" th:field="*{InsigUsuario}" readonly="readonly">
@@ -66,10 +72,16 @@
 				          th:value="${ciudad.idCiudad}"  ></option>	  
 				</select>
 				
+		
 			
 			</div>
-			<button type ="submit" class="btn btn-primary">Aceptar</button>
+			
+			<div class ="col-md-7 ">
+			<button type ="submit" class="btn btn-primary ">Registrarse</button>
 			<a href="/usuario/bienvenida" class="btn btn-danger">Cancelar</a>
+			</div>
+			
+			
 		</form>
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>

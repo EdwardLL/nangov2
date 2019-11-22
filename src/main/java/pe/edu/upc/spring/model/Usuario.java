@@ -2,10 +2,10 @@ package pe.edu.upc.spring.model;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,16 +34,21 @@ public class Usuario implements Serializable {
 	@NotEmpty(message="No puede estar vacio")
 	@NotBlank(message="No puede estar vacio")
 	private String NUsuario;
+	
+	@NotEmpty(message="No puede estar vacio")
+	@NotBlank(message="No puede estar vacio")
+	@Email(regexp="^(.+)@(.+)$",message="Email invalido")
 	private String EmailUsuario;
 	
 	@NotNull
-	@Past(message="No puedes seleccionar un dia que todavia NO existe")
 	@Temporal(TemporalType.DATE) //permite trabajar fechas
 	@Column(name="DBirth")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date DBirth;
 	
+
 	private int SaldUsuario;
+	
 	private String InsigUsuario;
 	
 	@NotEmpty(message="No puede estar vacio")
@@ -62,7 +67,7 @@ public class Usuario implements Serializable {
 	}
 	
 	public Usuario(int IDUsuario, String NUsuario, Date DBirth, int SaldUsuario,
-			String InsigUsuario, String ClvUsuario, String FUsuario, Ciudad ciudad) {
+			String InsigUsuario, String ClvUsuario, String FUsuario, Ciudad ciudad,String EmailUsuario) {
 		super();
 		this.IDUsuario=IDUsuario;
 		this.NUsuario=NUsuario;
@@ -72,6 +77,7 @@ public class Usuario implements Serializable {
 		this.ClvUsuario=ClvUsuario;
 		this.FUsuario=FUsuario;
 		this.ciudad=ciudad;
+		this.EmailUsuario=EmailUsuario;
 	}
 
 	public int getIDUsuario() {

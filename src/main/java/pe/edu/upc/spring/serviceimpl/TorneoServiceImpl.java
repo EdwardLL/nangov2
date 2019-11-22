@@ -67,8 +67,21 @@ public class TorneoServiceImpl implements ITorneoService{
 	
 	@Override
 	@Transactional(readOnly=true)
-	public List<Torneo> buscarTorneoPorVideojuego(Videojuego videojuego){		
-		return dTorneo.buscarTorneoPorVideojuego(videojuego);
+	public List<Torneo> buscarTorneoPorestadCreaTorneo(String estadCreaTorneo){		
+		return dTorneo.buscarTorneoPorECT(estadCreaTorneo);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Torneo escogeTorneo(int torneo) {
+		return dTorneo.escogeTorneo(torneo);
+	}
+	
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Torneo> buscarTorneoPorAprobado(String estadCreaTorneo,String estadTranscuTorneo){		
+		return dTorneo.buscarTorneoPorAprobado(estadCreaTorneo,estadTranscuTorneo);
 	}	
 	
 	@Override

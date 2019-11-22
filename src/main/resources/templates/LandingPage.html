@@ -24,17 +24,17 @@
 				</div>
 				<form class="col-12" th:action="@{/usuario/validarUsuario}" method="post" th:object="${usuario}" >
 					<div class="form-group">
-					 <input type="text" th:field="*{EmailUsuario}" placeholder="Email address" class="form-control" id="EmailUsuario"></input>
+					 <input type="text" th:field="*{EmailUsuario}" placeholder="Email address" class="form-control" 
+					 id="EmailUsuario"></input>
 					</div>
 					<div class="form-group">
 					
-					 <input type="password" th:field="*{ClvUsuario}" placeholder="Password" class="form-control" id="ClvUsuario"></input>
+					 <input type="password" th:field="*{ClvUsuario}" placeholder="Password" class="form-control" 
+					 id="ClvUsuario"></input>
 					</div>
 					<button type ="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-log-in"></span>   Ingresar</button>
 				</form>
-				<div class="col-12">
-				 <a th:href="@{/usuario/irRegistrar}"> </a>
-				</div>
+
 				<div class="col-12">
 				 <a th:href="@{/usuario/irRegistrar}"> Registrarse</a>
 				</div>

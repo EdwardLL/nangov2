@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Torneos</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+ 
+	<div th:replace="fragments/header :: header" ></div>
+
+	<h2 class="text-center my-15" >Mantenimiento de Solicitudes</h2>
+	
+	<div class="container">
+	<hr>
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					
+					
+					<table class="table table-bordered table-hover table-striped "
+						id="tab_logic">
+						<thead>
+							<tr class="bg-primary">
+								<th class="text-center">TORNEO</th>
+								<th class="text-center">USUARIO</th>
+								<th class="text-center">ESTADO</th>
+								<th class="text-center">OPERACION</th>
+								<th class="text-center">MODIFICAR</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="t: ${listaSoliTorneo}" align="center" >
+							<!-- th:text muestra una linea de texto -->
+								<td th:text="${t.torneo.nombreTorneo}"></td>
+								<td th:text="${t.usuario.NUsuario}"></td>
+								<td th:text="${t.estadSolicitud}"></td>
+																							
+								<!-- th:href Redirecciona -->
+								<td><a th:href="@{'/SolicitudTorneo/ver/' + ${t.idSolicitud}}"  class="btn btn-success " style="height: 40px ; width: 80px " >Ver</a></td>
+								<td><a th:href="@{'/SolicitudTorneo/modificar/' + ${t.idSolicitud}}"><span class="glyphicon glyphicon-pencil" style=" "></span></a></td>
+								
+
+
+							</tr>
+						</tbody>
+
+					</table>
+			<div th:if="${mensaje}" class="alert alert-info">
+					<p th:text="${mensaje}"></p>
+			</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

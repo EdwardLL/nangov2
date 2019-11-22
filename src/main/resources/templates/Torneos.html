@@ -17,9 +17,17 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 <h2 class="text-center my-15">Torneos</h2>
-	<div class="container">
-		<form id="myform" th:action="@{/torneo/buscarTorneo}" method="post" th:object="${torneo}" >
-			<div class="form-group">
+
+	<div class="container " >
+	<hr>
+	<a style="border-bottom-color: green" th:href="@{/torneo/irRegistrar2}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md btn-block"> <span
+						class="glyphicon glyphicon-plus"></span> Proponer Torneo
+					</a>
+	<hr>
+		<form id="myform" th:action="@{/torneo/Torneos}" method="post" th:object="${torneo}" >
+			<div class="form-group" >
 			
 			 <label for="videojuego" >Videojuego:</label> 		    	
 				<select  class="form-control" th:field="*{videojuego}" >
@@ -52,18 +60,22 @@
 				
 			 
 			</div>
-			<button type="submit" class="btn btn-primary">Filtrar</button>
-			<a href="/torneo/irBuscarTorneo" class="btn btn-danger">Reestablecer</a>			
+			<button type="submit" class="btn btn-success btn-block "  ><span
+						class="glyphicon glyphicon-search" ></span> Filtrar</button>
+			<a href="/torneo/irTorneos" class="btn btn-default btn-block ">Reestablecer</a>			
 		</form>
+		</div>
 		
-		<table class="table table-bordered table-hover table-striped"
+		<br>
+	<div class="container">
+		<table class="table  table-bordered table-hover "
 			id="tab_logic">
-			<thead>
-				<tr>
-								<th class="text-center"  >VIDEOJUEGO</th>
+			<thead >
+				<tr class="bg-primary" >
+								<th class="text-center" >VIDEOJUEGO</th>
 								<th class="text-center">TORNEO</th>
-								<th class="text-center">MODO</th>
-								<th class="text-center">F.INICIO</th>
+								<th class="text-center" >MODO</th>
+								<th class="text-center" >F.INICIO</th>
 								<th class="text-center">COSTO</th>
 								<th class="text-center">VACANTES</th>
 								<th class="text-center">SERVIDOR</th>
@@ -74,18 +86,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="t: ${listaTorneo}">
+				<tr th:each="t: ${listaTorneo}" align="center"> 
 							<!-- th:text muestra una linea de texto -->
 								<td th:text="${t.videojuego.nombreVideojuego}"></td>
 								<td th:text="${t.nombreTorneo}"></td>
 								<td th:text="${t.modoTorneo}"></td>
-								<td th:text="${#dates.format(t.fechaInicio,'dd/MM/yyyy')}"></td>
+								<td th:text="${t.fechaInicio}"></td>
 								<td th:text="${t.costoTorneo}"></td>
 								<td th:text="${t.vacantes}"></td>
 								<td th:text="${t.servidor.nombreServidor}"></td>
 								<td th:text="${t.estadTranscuTorneo}"></td>
-								<td th:text="${t.servidor.ciudad.zonahoraria.nombreZonaHoraria}"></td>
-								<td><a th:href="@{'/torneo/verTorneo/'} + ${t.idTorneo}">Ver</a></td>
+								<td th:text="${t.servidor.ciudad.zonahoraria.nombreZonaHoraria}" ></td>
+								<td><a th:href="@{'/torneo/verTorneo/'} + ${t.idTorneo}" class="btn btn-success " style="height: 40px ; width: 80px " >Ver</a></td>
 							</tr>
 
 			</tbody>

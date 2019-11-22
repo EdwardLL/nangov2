@@ -16,19 +16,15 @@
 	<div th:replace="fragments/header :: header"></div>
 <h2 class="text-center my-15">Mantenimiento de Usuarios</h2>
 	<div class="container">
+	<hr>
 		<form id="myform">
 			<div class="row clearfix">
 				<div class="col-md-12 column">				
-					<a style="border-bottom-color: green" th:href="@{/usuario/irBuscar}"
-						id="add-row" type="button"
-						class="btn btn-primary btn-md left-block"> <span
-						class="glyphicon glyphicon-search"></span> 
-					</a>
-					
+									
 					<table class="table table-bordered table-hover table-striped"
 						id="tab_logic">
 						<thead>
-							<tr>
+							<tr class="bg-primary">
 								<th class="text-center">NOMBRE</th>
 								<th class="text-center">ESTADO</th>
 								<th class="text-center">CORREO</th>
@@ -37,12 +33,12 @@
 								<th class="text-center">INSIGNIA</th>
 								<th class="text-center">CLAVE</th>
                                 <th class="text-center">CIUDAD</th>
-                                <th class="text-center">ACCIÓN</th>
-                                <th class="text-center">ACCIÓN</th>
+                                <th class="text-center">MODIFICAR</th>
+
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="p: ${listaUsuario}">
+							<tr th:each="p: ${listaUsuario}" align="center">
 								<td th:text="${p.NUsuario}"></td>
 								<td th:text="${p.FUsuario}"></td>
 								<td th:text="${p.EmailUsuario}"></td>
@@ -51,8 +47,7 @@
 								<td th:text="${p.InsigUsuario}"></td>
 								<td th:text="${p.ClvUsuario}"></td>
 								<td th:text="${p.ciudad.nombreCiudad}"></td>
-								<td><a th:href="@{/usuario/eliminar?id=}+${p.IDUsuario}">Eliminar</a></td>
-								<td><a th:href="@{'/usuario/modificar/'} + ${p.IDUsuario}">Modificar</a></td>
+								<td><a th:href="@{'/usuario/modificar/'} + ${p.IDUsuario}"><span class="glyphicon glyphicon-pencil" style=" "></span></a></td>
 							</tr>
 						</tbody>
 

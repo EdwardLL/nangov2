@@ -1,0 +1,18 @@
+insert into region(id_region,nombre_region) values (1,'America del Sur');
+insert into region(id_region,nombre_region) values (2,'America Central');
+insert into region(id_region,nombre_region) values (3,'America del Norte');
+insert into pais(id_pais,nombre_pais,id_region) values (1,'Peru',1);
+insert into pais(id_pais,nombre_pais,id_region)  values (2,'Chile',1);
+insert into pais(id_pais,nombre_pais,id_region)  values (3,'Colombia',1);
+insert into pais(id_pais,nombre_pais,id_region)  values (4,'Mexico',2);
+insert into zona_horaria(id_zona_horaria,nombre_zona_horaria) values (1,'UTC-5');
+insert into zona_horaria(id_zona_horaria,nombre_zona_horaria) values (2,'UTC-6');
+insert into zona_horaria(id_zona_horaria,nombre_zona_horaria) values (3,'UTC-7');
+insert into ciudad(id_ciudad,nombre_ciudad,id_pais,id_zona_horaria) values (1,'Lima',1,1);
+insert into ciudad(id_ciudad,nombre_ciudad,id_pais,id_zona_horaria values (2,'Guadalajara',4,1);
+insert into ciudad(id_ciudad,nombre_ciudad,id_pais,id_zona_horaria values (3,'Valparaiso',2,1);
+insert into servidor(id_servidor,nombre_servidor,id_ciudad) values (1,'Server Chile Valparaiso',3);
+insert into servidor(id_servidor,nombre_servidor,id_ciudad) values (2,'Server Mexico Guadalajara',2);
+insert into servidor(id_servidor,nombre_servidor,id_ciudad) values (3,'Server Peru Lima',1);
+insert into videojuego(id_videojuego,nombre_videojuego,numcompetidores) values (1,'Dota 2',25);
+insert into videojuego(id_videojuego,nombre_videojuego,numcompetidores) values (2,'League of legends',25);

@@ -3,7 +3,9 @@ package pe.edu.upc.spring.model;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -46,38 +48,24 @@ public class Torneo implements Serializable {
 	private Date FechaFin;
 	
 	@NotNull
-	@Temporal(TemporalType.TIME) 
+	@Temporal(TemporalType.TIME) //permite trabajar fechas
 	@Column(name="HoraInicio")
 	@DateTimeFormat(pattern="HH:mm")
 	private Date HoraInicio;
 	
 	@NotNull
-	@Temporal(TemporalType.TIME) 
+	@Temporal(TemporalType.TIME) //permite trabajar fechas
 	@Column(name="HoraFin")
 	@DateTimeFormat(pattern="HH:mm")
 	private Date HoraFin;
-	
+	@NotNull
 	private int costoTorneo;
+	@NotNull
 	private String premioTorneo;
 	private String platafTorneo;
+
 	private int vacantes;
 	private String estadCreaTorneo;
-	
-    public Date getHoraInicio() {
-		return HoraInicio;
-	}
-
-	public void setHoraInicio(Date horaInicio) {
-		HoraInicio = horaInicio;
-	}
-
-	public Date getHoraFin() {
-		return HoraFin;
-	}
-
-	public void setHoraFin(Date horaFin) {
-		HoraFin = horaFin;
-	}
 
 	@ManyToOne
 	@JoinColumn(name="idVideojuego",nullable=false)
@@ -97,7 +85,7 @@ public class Torneo implements Serializable {
 	
 	public Torneo(int idTorneo, String nombreTorneo, Date fechaInicio, int costoTorneo,
 			String premioTorneo, String platafTorneo, int vacantes, String estadCreaTorneo,
-			Videojuego videojuego,String modoTorneo,Servidor servidor,Date hI,Date hF,Date fechaFin) {
+			Videojuego videojuego,String modoTorneo,Servidor servidor,Date hI,Date hF,Date fechaFin,String estadTranscuTorneo) {
 		super();
 		this.idTorneo=idTorneo;
 		this.nombreTorneo=nombreTorneo;
@@ -113,9 +101,15 @@ public class Torneo implements Serializable {
 		this.HoraInicio=hI;
 		this.HoraFin=hF;
 		this.FechaFin=fechaFin;
+		this.estadTranscuTorneo=estadTranscuTorneo;
 	}
 
     
+	
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
 	public Date getFechaFin() {
 		return FechaFin;
 	}
@@ -124,6 +118,27 @@ public class Torneo implements Serializable {
 		FechaFin = fechaFin;
 	}
 
+	public Date getHoraInicio() {
+		return HoraInicio;
+	}
+
+	public void setHoraInicio(Date horaInicio) {
+		HoraInicio = horaInicio;
+	}
+
+	public Date getHoraFin() {
+		return HoraFin;
+	}
+
+	public void setHoraFin(Date horaFin) {
+		HoraFin = horaFin;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	
 	public int getIdTorneo() {
 		return idTorneo;
 	}
@@ -140,13 +155,7 @@ public class Torneo implements Serializable {
 		this.nombreTorneo = nombreTorneo;
 	}
 
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
+	
 
 	public int getCostoTorneo() {
 		return costoTorneo;
